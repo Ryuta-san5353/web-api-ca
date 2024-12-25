@@ -68,5 +68,29 @@ router.get("/tmdb/movie/:id/images",asyncHandler(async(req,res)=>{
     res.status(200).json(movieImages);
 }));
 
+router.get("/tmdb/movies",asyncHandler(async(req,res)=>{
+    const {page=1}=req.query;
+    const movies=await getMovies(page);
+    res.status(200).json(movies);
+}));
+
+router.get("/tmdb/movie/:id",asyncHandler(async(req,res)=>{
+    const {id}=req.params;
+    const movie= await getMovie(id);
+    res.status(200).json(movie);
+}));
+
+router.get("/tmdb/movie/:id/reviews",asyncHandler(async(req,res)=>{
+    const {id}=req.params;
+    const movieReviews=await getMovieReviews(id);
+    res.status(200).json(movieReviews);
+}));
+
+router.get("/tmdb/movie/:id/credits",asyncHandler(async(req,res)=>{
+    const {id}=req.params;
+    const movieCredits=await getMovieCredits(id);
+    res.status(200).json(movieCredits);
+}));
+
 
 export default router;
