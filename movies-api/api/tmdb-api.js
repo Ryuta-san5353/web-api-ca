@@ -117,3 +117,48 @@ export const getPopularMovies = async (page=1)=> {
         throw error;
     }
 };
+
+export const getPopularActors = async(page=1)=>{
+    try{
+        const response = await fetch(
+            `https://api.themoviedb.org/3/person/popular?api_key=${process.env.TMDB_KEY}&language=en-US&page=${page}`
+        );
+        if(!response.ok){
+            throw new Error(response.json().message);
+        }
+        return await response.json();
+    }catch(error){
+        throw error;
+    }
+};
+
+export const getActor = async(id)=>{
+    try{
+        const response = await fetch(
+            `https://api.themoviedb.org/3/person/${id}?api_key=${process.env.TMDB_KEY}`
+        );
+        if(!response.ok){
+            throw new Error(response.json().message);
+        };
+        return await response.json();
+    }catch(error){
+        throw error;
+    }
+};
+
+export const getActorImages = async(id)=>{
+    try{
+        const response = await fetch(
+            `https://api.themoviedb.org/3/person/${id}/images?api_key=${process.env.TMDB_KEY}`
+        );
+        if(!response.ok){
+            throw new Error(response.json().message);
+        };
+        return await response.json();
+    }catch(error){
+        throw error;
+    }
+};
+
+
+

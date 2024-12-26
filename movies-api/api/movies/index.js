@@ -8,7 +8,10 @@ import {getUpcomingMovies,
     getMovieReviews,
     getMovieImages,
     getMovie,
-    getPopularMovies
+    getPopularMovies,
+    getActor,
+    getActorImages,
+    getPopularActors
 } from '../tmdb-api';
 
 const router = express.Router();
@@ -92,5 +95,22 @@ router.get("/tmdb/movie/:id/credits",asyncHandler(async(req,res)=>{
     res.status(200).json(movieCredits);
 }));
 
+router.get("/tmdb/person/popular",asyncHandler(async(req,res)=>{
+    const {page=1}=req.query;
+    const popularActors= await getPopularActors(page);
+    res.status(200).json(popularActors) 
+}));
+
+router.get("/tmdb/person/:id",asyncHandler(async(req,res)=>{
+    const {id}= req.params;
+    const actor = await getActor(id);
+    res.status(200).json(actor);
+}))
+
+router.get("/tmdb/person/:id/images",asyncHandler(async(req,res)=>{
+    const {id}=req.params;
+    const actorImages= await getActorImages(id);
+    res.status(200).json(actorImages);
+}));
 
 export default router;
