@@ -1,5 +1,6 @@
 import React,{useState, createContext} from "react";
 import {login, signup} from "../api/tmdb-api";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext(null);
 
@@ -8,6 +9,7 @@ const AuthContextProvider = (props) =>{
     const [ isAuthenticated,setIsAuthenticated ] = useState(false);
     const [authToken, setAuthToken]= useState(existingToken);
     const [userName,setUserName]=useState("");
+    const navigate = useNavigate();
 
     const setToken = (data)=>{
         localStorage.setItem("token",data);
@@ -20,6 +22,7 @@ const AuthContextProvider = (props) =>{
             setToken(result.token)
             setIsAuthenticated(true);
             setUserName(username);
+            navigate("/home");
         }
     };
 

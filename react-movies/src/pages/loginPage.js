@@ -28,7 +28,7 @@ const LoginPage = (props)=>{
         <input id="username" placeholder="user name" onChange={e =>{
             setUserName(e.target.value);
         }}></input><br />
-        <input id="password" type="pawssword" placeholder="password" onChange={e =>{
+        <input id="password" type="password" placeholder="password" onChange={e =>{
             setPassword(e.target.value);
         }}></input><br />
         {}
