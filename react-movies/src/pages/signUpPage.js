@@ -1,6 +1,8 @@
 import React,{useContext, useState} from "react";
 import {Navigate} from "react-router-dom";
 import {AuthContext} from "../contexts/authContext";
+import {Button,TextField,Typography,Container} from "@mui/material";
+import Grid from "@mui/material/Grid2"
 
 const SignUpPage = (props)=>{
     const context = useContext(AuthContext)
@@ -24,20 +26,51 @@ const SignUpPage = (props)=>{
     }
 
     return(
-        <>
-            <h2>Sign Up page</h2>
-            <input value={userName} placeholder="user name" onChange={e => {
-        setUserName(e.target.value);
-    }}></input><br />
-            <input value={password} type="password" placeholder="password" onChange={e => {
-        setPassword(e.target.value);
-    }}></input><br />
-            <input value={passwordAgain} type="password" placeholder="password again" onChange={e => {
-        setPasswordAgain(e.target.value);
-    }}></input><br />
-      {/* Login web form  */}
-    <button onClick={register}>Register</button>
-        </>
+        <Container maxWidth="sm" sx={{mt:5}}>
+            <Grid container spacing={3} direction="column" alignItems="center">
+                <Grid item>
+                    <Typography variant="h4" gutterBottom>
+                        Sign Up
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    <Typography variant="body1" align="center">
+                        Create an account
+                    </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        label="Username"
+                        variant="outlined"
+                        fullWidth
+                        onChange={(e)=>setUserName(e.target.value)}
+                        />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        label="Password"
+                        type="password"
+                        variant="outlined"
+                        fullWidth
+                        onChange={(e)=>setPassword(e.target.value)}
+                        />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        label="Confirm Password"
+                        type="password"
+                        variant="outlined"
+                        fullWidth
+                        onChange={(e)=>setPasswordAgain(e.target.value)}
+                        />
+                </Grid>
+                <Grid item xs={12}>
+                    <Button variant="contained" color="primary" fullWidth onClick={register}>
+                        Register
+                    </Button>
+                </Grid>
+            </Grid>
+        </Container>
     );
 };
 export default SignUpPage;

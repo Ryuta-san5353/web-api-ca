@@ -2,6 +2,9 @@ import React, { useContext , useState} from "react";
 import {Navigate, useLocation} from "react-router-dom";
 import {AuthContext} from "../contexts/authContext";
 import { Link } from "react-router-dom";
+import {Button , TextField,Typography,Container} from "@mui/material";
+import Grid from "@mui/material/Grid2";
+
 
 const LoginPage = (props)=>{
 
@@ -23,20 +26,50 @@ const LoginPage = (props)=>{
     }
 
     return(
-    <>
-        <h2>Login page</h2>
-        <input id="username" placeholder="user name" onChange={e =>{
-            setUserName(e.target.value);
-        }}></input><br />
-        <input id="password" type="password" placeholder="password" onChange={e =>{
-            setPassword(e.target.value);
-        }}></input><br />
-        {}
-        <button onClick={login}>Log in </button>
-        <p>Not Registered?
-            <Link to="/signup">Sign Up!</Link>
-        </p>
-    </>
+        <Container maxWidth="sm" sx={{mt:5}}>
+            <Grid container spacing={3} direction="column" alignItems="center">
+                <Grid item>
+                    <Typography variant ="h4" gutterButton>
+                        Login
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    <Typography variant="body1" align="center">
+                        Log in to access protected pages.
+                    </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        label="Username"
+                        variant="outlined"
+                        fullWidth
+                        onChange={(e)=>setUserName(e.target.value)}
+                        />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        label="Password"
+                        type="password"
+                        variant="outlined"
+                        fullWidth
+                        onChange={(e) =>setPassword(e.target.value)}
+                        />
+                </Grid>
+                <Grid item xs={12}>
+                    <Button variant="contained" color="primary" fullWidth onClick={login}>
+                        Log In
+                    </Button>
+                </Grid>
+                <Grid item>
+                    <Typography variant="body2">
+                        Not registered?{" "}
+                        <Link to="/signup" style={{textDecoration : "none"  ,color:"primary"}}>
+                        Sign Up!
+                        </Link>
+                    </Typography>
+                </Grid>
+            </Grid>
+        </Container>
     );
 };
 
