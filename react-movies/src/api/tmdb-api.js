@@ -14,7 +14,11 @@
 
 export const getMovies=(page=1)=>{
   return fetch(
-    `http://localhost:8080/api/movies/tmdb/movies?page=${page}`
+    `http://localhost:8080/api/movies/tmdb/movies?page=${page}`,{
+      headers:{
+        'Authorization':window.localStorage.getItem('token')
+      }
+    }
   ).then((response)=>{
     if(!response.ok){
       throw new Error(response.json().message);
@@ -31,7 +35,11 @@ export const getMovie = (args) => {
   const [, idPart] = args.queryKey;
   const { id } = idPart;
   return fetch(
-    `http://localhost:8080/api/movies/tmdb/movie/${id}`
+    `http://localhost:8080/api/movies/tmdb/movie/${id}`,{
+      headers: {
+        'Authorization': window.localStorage.getItem('token')
+      }
+    }
   ).then((response) => {
     if (!response.ok) {
       throw new Error(response.json().message);
@@ -45,7 +53,11 @@ export const getMovie = (args) => {
   
   export const getGenres = async () => {
     return fetch(
-      `http://localhost:8080/api/movies/tmdb/genres`
+      `http://localhost:8080/api/movies/tmdb/genres`,{
+        headers: {
+          'Authorization': window.localStorage.getItem('token')
+        }
+      }
     ).then( (response) => {
       if (!response.ok) {
         throw new Error(response.json().message);
@@ -61,7 +73,11 @@ export const getMovie = (args) => {
     const [, idPart] = queryKey;
     const { id } = idPart;
     return fetch(
-      `http://localhost:8080/api/movies/tmdb/movie/${id}/images`
+      `http://localhost:8080/api/movies/tmdb/movie/${id}/images`,{
+        headers: {
+          'Authorization': window.localStorage.getItem('token')
+        }
+      }
     ).then( (response) => {
       if (!response.ok) {
         throw new Error(response.json().message);
@@ -76,7 +92,11 @@ export const getMovie = (args) => {
 
   export const getMovieReviews = (id) => {
     return fetch(
-      `http://localhost:8080/api/movies/tmdb/movie/${id}/reviews`
+      `http://localhost:8080/api/movies/tmdb/movie/${id}/reviews`,{
+        headers: {
+          'Authorization': window.localStorage.getItem('token')
+        }
+      }
     )
       .then((res) => res.json())
       .then((json) => {
@@ -87,7 +107,11 @@ export const getMovie = (args) => {
 
   export const getUpcomingMovies=(page=1)=>{
     return fetch(
-      `http://localhost:8080/api/movies/tmdb/upcoming?page=${page}`
+      `http://localhost:8080/api/movies/tmdb/upcoming?page=${page}`,{
+        headers: {
+          'Authorization': window.localStorage.getItem('token')
+        }
+      }
     ).then((response) => {
       if(!response.ok){
         throw new Error(response.json().message);
@@ -101,7 +125,11 @@ export const getMovie = (args) => {
 
   export const getPopularMovies=(page=1)=>{
     return fetch(
-      `http://localhost:8080/api/movies/tmdb/popular?page=${page}`
+      `http://localhost:8080/api/movies/tmdb/popular?page=${page}`,{
+        headers: {
+          'Authorization': window.localStorage.getItem('token')
+        }
+      }
     ).then((response)=>{
       if(!response.ok){
         throw new Error(response.json().message);
@@ -115,7 +143,11 @@ export const getMovie = (args) => {
 
   export const getPopularActors = (page=1)=>{
     return fetch(
-      `http://localhost:8080/api/movies/tmdb/person/popular?page=${page}`
+      `http://localhost:8080/api/movies/tmdb/person/popular?page=${page}`,{
+        headers: {
+          'Authorization': window.localStorage.getItem('token')
+        }
+      }
     ).then((response)=>{
       if(!response.ok){
         throw new Error(response.json().message);
@@ -132,7 +164,11 @@ export const getMovie = (args) => {
     const [, idPart] = args.queryKey;
     const { id } = idPart;
     return fetch(
-      `http://localhost:8080/api/movies/tmdb/person/${id}`
+      `http://localhost:8080/api/movies/tmdb/person/${id}`,{
+        headers: {
+          'Authorization': window.localStorage.getItem('token')
+        }
+      }
     ).then((response) => {
       if (!response.ok) {
         throw new Error(response.json().message);
@@ -148,7 +184,11 @@ export const getMovie = (args) => {
     const [, idPart] = queryKey;
     const { id } = idPart;
     return fetch(
-      `http://localhost:8080/api/movies/tmdb/person/${id}/images`
+      `http://localhost:8080/api/movies/tmdb/person/${id}/images`,{
+        headers: {
+          'Authorization': window.localStorage.getItem('token')
+        }
+      }
     ).then( (response) => {
       if (!response.ok) {
         throw new Error(response.json().message);
@@ -165,7 +205,11 @@ export const getMovie = (args) => {
     const [,idPart]=queryKey;
     const {id}=idPart
     return fetch(
-      ` http://localhost:8080/api/movies/tmdb/movie/${id}/credits`
+      ` http://localhost:8080/api/movies/tmdb/movie/${id}/credits`,{
+        headers: {
+          'Authorization': window.localStorage.getItem('token')
+        }
+      }
     ).then((response)=>{
       if(!response.ok){
         throw new Error(response.json().message);

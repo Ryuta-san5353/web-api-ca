@@ -12,6 +12,7 @@ import { styled } from '@mui/material/styles';
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { AuthContext } from "../../contexts/authContext";
+import Avatar from "@mui/material/Avatar"
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
@@ -106,6 +107,14 @@ const SiteHeader = ({ history }) => {
                     {opt.label}
                   </Button>
                 ))}
+                {isAuthenticated && (
+                  <IconButton
+                    onClick={()=>navigate("/profile")}
+                    sx={{ml:2}}
+                    >
+                      <Avatar sx={{bgcolor:"primary.main"}}/>
+                    </IconButton>
+                )}
                 <Button
                   color="inherit"
                   onClick={isAuthenticated ? signout: ()=>navigate("/login")}

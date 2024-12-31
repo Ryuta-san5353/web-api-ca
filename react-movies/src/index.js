@@ -19,6 +19,7 @@ import LoginPage from "./pages/loginPage";
 import SignUpPage from "./pages/signUpPage";
 import ProtectedRoutes from "./protectedRoutes";
 import PublicPage from "./pages/publicPage";
+import ProfilePage from "./pages/profilePage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -52,6 +53,7 @@ const App = () => {
                 <Route path="/movies/popular" element={<PopularPage/>}/>
                 <Route path="/actors" element={<ActorsPage/>}/>
                 <Route path="/actors/:id" element={<ActorPage/>}/>
+                <Route path="/profile" element={<ProfilePage/>}/>
                 </Route>  
             </Routes>
           </MoviesContextProvider>
