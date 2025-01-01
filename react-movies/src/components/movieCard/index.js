@@ -24,6 +24,8 @@ export default function MovieCard({movie,action}) {
       movie.favorite=false
     }
 
+
+
     const handleAddToFavorite=(e)=>{
       e.preventDefault();
       addToFavorites(movie);
@@ -71,6 +73,7 @@ export default function MovieCard({movie,action}) {
         </Grid>
       </CardContent>
       <CardActions disableSpacing sx={{gap:"4px"}}>
+
       
       {action(movie)}
     
