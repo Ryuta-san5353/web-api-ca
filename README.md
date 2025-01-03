@@ -24,11 +24,29 @@ REMEMBER: DON'T PUT YOUR OWN USERNAMES/PASSWORDS/AUTH KEYS IN THE README OR ON G
 ______________________
 NODEENV=development
 PORT=8080
-HOST=localhost
+HOST=
 mongoDB=YourMongoURL
 seedDb=true
 secret=YourJWTSecret
 ______________________
+
+1. Create a .env file in the root directory of the project.
+2. Add these variables in the .env file.
+NODEENV=development
+PORT=8080
+HOST=
+mongoDB=YourMongoURL
+seedDb=true
+secret=YourJWTSecret
+
+3. Replace the placeholders (mondoDB,secret) with your actual values.
+
+4. To start the database
+put command: mongod -dbpath db
+5. To start the web api server
+put command: npm run dev
+6. To start your react app 
+put command : npm start
 
 ## API Design
 Give an overview of your web API design, perhaps similar to the following: 
