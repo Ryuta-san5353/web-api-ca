@@ -243,4 +243,40 @@ export const getMovie = (args) => {
     return response.json();
   }
 
+  export const getFavorites = async(userId)=>{
+    const response = await fetch(
+      `http://localhost:8080/api/users/favorites`,{
+        headers:{
+          'Authorization':window.localStorage.getItem('token')
+        },
+      }
+    );
+    return response.json();
+  }
+
+  export const addFavorite = async(movieId)=>{
+    const response = await fetch(
+      `http://localhost:8080/api/users/favorites`,{
+        method:'POST',
+        headers:{
+          'Authorization':window.localStorage.getItem('token'),
+          'Content-Type':"application/json",
+        },
+        body:JSON.stringify({movieId}),
+      }
+    );
+    return response.json();
+  };
+
+  export const removeFavorite = async(movieId)=>{
+    const response = await fetch(
+      `http://localhost:8080/api/users/favorites/${movieId}`,{
+        method:'DELETE',
+        headers:{
+          'Authorization':window.localStorage.getItem('token')
+        },
+      }
+    );
+    return response.json();
+  };
 

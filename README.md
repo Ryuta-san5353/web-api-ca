@@ -1,6 +1,6 @@
 # Assignment 2 - Web API.
 
-Name: Your Name
+Name: Ryuta Ikejiri
 
 ## Features.
 
@@ -24,7 +24,7 @@ REMEMBER: DON'T PUT YOUR OWN USERNAMES/PASSWORDS/AUTH KEYS IN THE README OR ON G
 ______________________
 NODEENV=development
 PORT=8080
-HOST=
+HOST=localhost
 mongoDB=YourMongoURL
 seedDb=true
 secret=YourJWTSecret
@@ -34,15 +34,52 @@ ______________________
 Give an overview of your web API design, perhaps similar to the following: 
 
 - /api/movies | GET | Gets a list of movies 
-- /api/movies/{movieid} | GET | Gets a single movie 
-- /api/movies/{movieid}/reviews | GET | Get all reviews for movie 
-- /api/movies/{movieid}/reviews | POST | Create a new review for Movie 
+- /api/movies/:id | GET | Get information of movie
+- /api/tmdb/upcoming | GET | Get upcoming movies from tmdb api
+- /api/tmdb/genres | GET | Get genres of movies from tmdb 
+- /api/tmdb/popular | GET |  Get popular movies from tmdb
+- /api/tmdb/movie/:id/images | GET | Get images of a movie specified from id from tmdb
+- /api/tmdb/movies | GET | Get movies from tmdb api
+- /api/tmdb/movie/:id | GET | Get information of specified movie by id from tmdb
+- /api/tmdb/movie/:id/reviews | GET | Get reviews of a movie from tmdb
+- /api/tmdb/movie/:id/credits | GET | Get movie credits of a movie from tmdb
+- /api/tmdb/person/popular | GET | Get popular actors from tmdb 
+- /api/tmdb/person/:id | GET | Get information of a actor
+- /api/tmdb/person/:id/images | GET | Get images of a actor specified by id
+- /api/users | GET | Get users in user collection
+- /api/users | POST | Create a User
+- /api/users/:id | PUT | Update a user 
+- /api/users/favorites | GET | Get movie favorites of a user
+- /api/users/favorites | POST | Add a movie as favorites of a user
+- /api/favorites/:movieId | DELETE | Delete movie from favorites of a user
 
 If you have your API design on an online platform or graphic, please link to it (e.g. [Swaggerhub](https://app.swaggerhub.com/)).
 
 ## Security and Authentication
 
 Give details of authentication/security implemented on the API (e.g. passport/sessions). Indicate which routes are protected.
+
+Details:
+This API uses JWT for authentication. Users must
+log in to receive a JWT token. The token must be included in the "Authorization" header of subsequent requests to access protected routes. The authenticate middleware is used to validate the token and identify the user for protected routes. 
+
+Public Routes:
+- "/login" - Login page
+- "/signup" - Signup page
+- "/" - Public page
+
+Protected Routes:
+- "/movies/favorites" - Favorite movie page
+- "/reviews/:id" - Reviews of a movie
+- "/movies/:id" - Detail page of a moive
+- "/home" - "home page"
+- "/reviews/form"
+- "/movies/upcoming" - "upcoming movies page "
+- "/movies/popular" - "popular movies page"
+- "/actors" - "popular actors page"
+- "/actors/:id" - "details page of a actor"
+- "/profile" - "profile page of a user"
+
 
 ## Integrating with React App
 

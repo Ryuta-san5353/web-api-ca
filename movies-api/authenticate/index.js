@@ -18,7 +18,10 @@ const authenticate = async (request, response, next) => {
             throw new Error('User not found');
         }
         // Optionally attach the user to the request for further use
-        request.user = user; 
+        request.user = {
+            id:user.id,
+            username:user.username
+        }; 
         next();
     } catch(err) {
         next(new Error(`Verification Failed: ${err.message}`));

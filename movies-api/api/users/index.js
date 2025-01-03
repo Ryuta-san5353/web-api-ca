@@ -2,6 +2,7 @@ import express from 'express';
 import User from './userModel';
 import asyncHandler from 'express-async-handler';
 import jwt from 'jsonwebtoken';
+import authenticate from '../../authenticate';
 
 const router = express.Router(); // eslint-disable-line
 
@@ -61,5 +62,29 @@ async function authenticateUser(req, res) {
         res.status(401).json({ success: false, msg: 'Wrong password.' });
     }
 }
+
+router.get("/favorites",authenticateUser,asyncHandler(async(req,res)=>{
+    const user = await User.findById(req.user.id);
+    res.status(200).json(user.favorites);
+}))
+
+router.post("/favorites",authenticate,asyncHandler(async(req,res)=>{
+    const {movieId}=req.body;
+    const user= await User.findByIdAndUpdate(
+        req.user.id,
+        {$addToSet:{favorites:movieId}},
+        {new:true}
+    );
+    res.status(200).json(user.favorites);
+}));
+
+router.delete("/favorites/:movieId",authenticate,asyncHandler(async(req,res)=>{
+    const user = await User.findByIdAndUpdate(
+        req.user.findByUserName,
+        {$pull:{favorites:req.params.movieId}},
+        {new:true}
+    );
+    res.status(200).json(user.favorites);
+}));
 
 export default router;

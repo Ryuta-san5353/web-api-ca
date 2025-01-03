@@ -5,6 +5,7 @@ import Grid from "@mui/material/Grid2";
 
 const ProfilePage = ()=>{
     const {userName} = useContext(AuthContext);
+    
 
     return (
         <Container maxWidth="sm" sx={{mt:5}}>

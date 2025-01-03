@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { getFavorites,addFavorite,removeFavorite } from "../api/tmdb-api";
 
 export const MoviesContext = React.createContext(null);
 
@@ -6,6 +7,7 @@ const MoviesContextProvider = (props) => {
   const [favorites, setFavorites] = useState( [] )
   const [myReviews, setMyReviews] = useState( {} ) 
   const [mustWatches,setMustwatches]=useState([])
+  const [myFavorites,setMyFavorites]=useState([]);
 
 
   const addToFavorites = (movie) => {
@@ -44,6 +46,37 @@ const MoviesContextProvider = (props) => {
     console.log("Current Must Watch IDs:", newMustWatches)
   }
 
+  const fetchFavorites = async()=>{
+    try{
+      const result = await getFavorites();
+      setMyFavorites(result);
+    }catch(error){
+      console.error("Failed to fetch favorites",error);
+    }
+  };
+
+  const addFavorites = async(movieId)=>{
+    try{
+      console.log("adding to favorites",movieId)
+      const updatedFavorites = await addFavorite(movieId);
+      setMyFavorites(updatedFavorites);
+    }catch(error){
+      console.error("Failed to add favorite",error);
+    }
+  }
+
+  const removeFavorites=async(movieId)=>{
+    try{
+      const updatedFavorites = await removeFavorite(movieId);
+      setMyFavorites(updatedFavorites);
+    }catch(error){
+      console.error("Failed to remove favorite",error);
+    }
+  }
+  useEffect(()=>{
+    fetchFavorites();
+  },[]);
+
  
 
   return (
@@ -54,6 +87,10 @@ const MoviesContextProvider = (props) => {
         removeFromFavorites,
         addReview,
         addToMustWatch,
+        addFavorites,
+        removeFavorites,
+        fetchFavorites,
+        myFavorites
       }}
     >
       {props.children}
