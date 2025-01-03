@@ -6,10 +6,10 @@ Name: Ryuta Ikejiri
 
 A bullet-point list of the ADDITIONAL features you have implemented in the API **THAT WERE NOT IN THE LABS** (or modifications to existing features)
  
- + Feature 1 
- + Feature 2 
- + Feature 3 
- + etc
+ + THe first public page that appears allows you to jump to the sign up or login page.
+ + After logging in, the word "login" on the site header has been changed to "sign out" so that users can sign out by pressing the button "sign out". 
+ + A profile page was created showing the user name.
+ + Added a favorites field to the user collectoin and created a button on the movie card to add to the user's favorites field, so that when pressed , the informtion is added to the database. However, on the database, it was added, but due to the errors and lack of my ability , I could not display it on the page.
 
 ## Setup requirements.
 
@@ -84,6 +84,22 @@ Protected Routes:
 ## Integrating with React App
 
 Describe how you integrated your React app with the API. List the views that use your Web API instead of the TMDB API. Describe any other updates to the React app from Assignment One.
+
+Integration Details:
+- The react app uses fetch to send HTTP requests to the web API. Each request includes a JWT token in the Authorization header for authentication.
+- Pages that require user authentication are wrapped in a protected routes which ensurers the user is logged in before accessing the pages.
+
+Views:
+- Profile page
+- Favorites page (not created properly, 
+succeeded to save in database but I could't display user favorites on a page.)
+- Log in page
+- Sign up page
+- Other pages are pages created from data retrieved from the TMDB API by the backend and data retrived from WEB-API on the front end. 
+
+Updates from Assignment One:
+- Authentication: Added login and signup pages, integrated JWT-based authentication with the Web-API.
+-
 
 ## Independent learning (if relevant)
 
